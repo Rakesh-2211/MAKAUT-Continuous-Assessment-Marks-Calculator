@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAKAUT Continuous Assessment (CA) Marks Calculator</title>
+  <meta name="description" content="Calculate your MAKAUT Continuous Assessment (CA) marks accurately based on CA1, CA2, ECA (End-Semester CA out of 70), and WCA (Whole-Semester CA out of 10).">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-background">
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+  </div>
+
+  <div class="layout-wrapper">
+    <!-- Top Header & Banner -->
+    <header class="main-header">
+      <div class="header-content">
+        <div class="university-brand">
+          <div class="logo-emblem">
+            <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M20 2L4 10V18C4 28.5 10.8 38.1 20 40C29.2 38.1 36 28.5 36 18V10L20 2Z" fill="url(#logo-grad)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+              <path d="M20 10L12 15V22L20 27L28 22V15L20 10Z" fill="#ffffff" fill-opacity="0.9"/>
+              <path d="M20 27V33" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="logo-grad" x1="4" y1="2" x2="36" y2="40" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#00b4d8"/>
+                  <stop offset="1" stop-color="#0077b6"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>MAKAUT Continuous Assessment <span>Marks Calculator</span></h1>
+          </div>
+        </div>
+        
+        <div class="header-actions">
+          <div class="badge-total">
+            <span class="label">Total Evaluation</span>
+            <span class="value">30 Marks</span>
+          </div>
+          <button id="theme-toggle" class="theme-switch-bar" title="Toggle Day / Night Mode" aria-label="Toggle Day / Night Mode">
+            <span class="theme-toggle-knob">
+              <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+              <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </span>
+            <span class="theme-mode-label" id="theme-mode-label">Night Mode</span>
+          </button>
+        </div>
+      </div>
+      <p class="subtitle">Official Continuous Assessment (CA) System Utility for theory courses carrying 30 marks comprising Class Tests (CA1 & CA2), End-Semester CA (ECA), and Whole-Semester CA (WCA).</p>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs" aria-label="Calculator Views">
+      <button class="tab-btn active" data-tab="single-calc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>
+        Subject Assessment Calculator
+      </button>
+      <button class="tab-btn" data-tab="semester-manager">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+        Multi-Subject Semester Tracker
+      </button>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="main-content">
+      <!-- TAB 1: SINGLE SUBJECT CALCULATOR -->
+      <section id="single-calc" class="tab-content active">
+        <div class="calculator-grid">
+          <!-- Left Column: Input Forms -->
+          <div class="inputs-column">
+            
+            <!-- Subject Name Field -->
+            <div class="card subject-name-card">
+              <label for="subject-title-input" class="field-label">
+                <span>Subject / Course Name</span>
+                <span class="optional-tag">(Optional for report)</span>
+              </label>
+              <input type="text" id="subject-title-input" class="text-input" placeholder="e.g. Data Structures & Algorithms (CS301)" value="Data Structures & Algorithms">
+            </div>
+
+            <!-- COMPONENT A CARD -->
+            <div class="card component-card comp-a">
+              <div class="card-header">
+                <div class="comp-badge comp-a-badge">A</div>
+                <div class="comp-info">
+                  <h3>Class Tests – CA1 & CA2</h3>
+                  <p class="comp-subtitle">Two tests conducted during semester (Full Marks: 25 each)</p>
+                </div>
+                <div class="comp-weight">
+                  <span class="weight-tag">Max 10 Marks</span>
+                </div>
+              </div>
+              
+              <div class="card-body">
+                <div class="input-row">
+                  <div class="input-group">
+                    <label for="ca1-input">CA1 Score <span class="max-hint">(out of 25)</span></label>
+                    <div class="input-wrapper">
+                      <input type="number" id="ca1-input" min="0" max="25" step="0.5" value="20" placeholder="0 - 25">
+                      <span class="unit">/ 25</span>
+                    </div>
+                  </div>
+                  <div class="input-group">
+                    <label for="ca2-input">CA2 Score <span class="max-hint">(out of 25)</span></label>
+                    <div class="input-wrapper">
+                      <input type="number" id="ca2-input" min="0" max="25" step="0.5" value="22" placeholder="0 - 25">
+                      <span class="unit">/ 25</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="formula-box">
+                  <div class="formula-line">
+                    <span>Average of CA1 & CA2:</span>
+                    <strong id="ca-avg-display">21.00 / 25</strong>
+                  </div>
+                  <div class="formula-line highlight">
+                    <span>Converted Outcome (Scaled to 10):</span>
+                    <strong id="comp-a-score">8.40 / 10</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMPONENT B CARD -->
+            <div class="card component-card comp-b">
+              <div class="card-header">
+                <div class="comp-badge comp-b-badge">B</div>
+                <div class="comp-info">
+                  <h3>End-Semester CA (ECA)</h3>
+                  <p class="comp-subtitle">Pen-and-paper mock test on full syllabus</p>
+                </div>
+                <div class="comp-weight">
+                  <span class="weight-tag">Max 10 Marks</span>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div class="input-group full-width">
+                  <label for="eca-input">Raw ECA Marks obtained <span class="max-hint">(out of 70)</span></label>
+                  <div class="input-wrapper">
+                    <input type="number" id="eca-input" min="0" max="70" step="0.5" value="56" placeholder="0 - 70">
+                    <span class="unit">/ 70</span>
+                  </div>
+                  <p class="field-hint">Questions pattern similar to 70-mark End-Semester Examination.</p>
+                </div>
+
+                <div class="formula-box">
+                  <div class="formula-line highlight">
+                    <span>70 Marks converted to 10:</span>
+                    <strong id="comp-b-score">8.00 / 10</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- COMPONENT C CARD -->
+            <div class="card component-card comp-c">
+              <div class="card-header">
+                <div class="comp-badge comp-c-badge">C</div>
+                <div class="comp-info">
+                  <h3>Whole-Semester CA (WCA)</h3>
+                  <p class="comp-subtitle">Continuous evaluation (Presentation, Report, Assignment, Project)</p>
+                </div>
+                <div class="comp-weight">
+                  <span class="weight-tag">Max 10 Marks</span>
+                </div>
+              </div>
+
+              <div class="card-body">
+                <div class="input-group full-width">
+                  <label for="wca-input">Continuous Effort Marks <span class="max-hint">(out of 10)</span></label>
+                  <div class="input-wrapper">
+                    <input type="number" id="wca-input" min="0" max="10" step="0.5" value="9" placeholder="0 - 10">
+                    <span class="unit">/ 10</span>
+                  </div>
+                  <ul class="activity-chips">
+                    <li>Seminar / Presentation</li>
+                    <li>Technical Report</li>
+                    <li>Term Paper / Case Study</li>
+                    <li>Project Task</li>
+                  </ul>
+                </div>
+
+                <div class="formula-box">
+                  <div class="formula-line highlight">
+                    <span>WCA Outcome (Direct Score):</span>
+                    <strong id="comp-c-score">9.00 / 10</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action buttons -->
+            <div class="actions-row">
+              <button id="btn-save-subject" class="btn btn-primary">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                Save Subject to Semester
+              </button>
+              <button id="btn-print-report" class="btn btn-outline">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                Print / Export Grade Sheet
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Visual Result Summary & Analytics -->
+          <div class="results-column">
+            
+            <!-- OVERALL SCORE CARD -->
+            <div class="card result-card sticky-card">
+              <div class="result-header">
+                <h2>Continuous Assessment Score</h2>
+                <span class="subject-badge" id="summary-subject-name">Data Structures & Algorithms</span>
+              </div>
+
+              <!-- Gauge Visual -->
+              <div class="gauge-container">
+                <svg class="score-ring" viewBox="0 0 160 160">
+                  <circle class="ring-bg" cx="80" cy="80" r="70"/>
+                  <circle class="ring-progress" id="ring-progress-bar" cx="80" cy="80" r="70" stroke-dasharray="439.8" stroke-dashoffset="65.9"/>
+                </svg>
+                <div class="gauge-content">
+                  <span class="score-number" id="total-score-val">25.40</span>
+                  <span class="score-max">/ 30.00</span>
+                  <span class="score-percent" id="total-percent-val">84.7%</span>
+                </div>
+              </div>
+
+              <!-- Performance Status Badge -->
+              <div class="status-box" id="status-box">
+                <div class="status-indicator" id="status-indicator"></div>
+                <div class="status-text">
+                  <span class="status-title" id="status-title">Very Good</span>
+                  <span class="status-desc" id="status-desc">Outstanding continuous evaluation performance!</span>
+                </div>
+              </div>
+
+              <!-- Detailed Score Breakdown Table -->
+              <div class="breakdown-section">
+                <h3>Component Breakdown</h3>
+                <div class="breakdown-list">
+
+                  <!-- Comp A breakdown -->
+                  <div class="breakdown-item">
+                    <div class="item-meta">
+                      <span class="dot comp-a-dot"></span>
+                      <div class="item-name">
+                        <strong>Component A (Class Tests)</strong>
+                        <small>CA1: <span id="bd-ca1">20</span>/25 | CA2: <span id="bd-ca2">22</span>/25</small>
+                      </div>
+                    </div>
+                    <div class="item-score">
+                      <span class="score-val" id="bd-comp-a">8.40</span>
+                      <span class="score-denom">/ 10</span>
+                    </div>
+                  </div>
+                  <div class="progress-bar-sm"><div class="bar-fill comp-a-fill" id="bar-a" style="width: 84%"></div></div>
+
+                  <!-- Comp B breakdown -->
+                  <div class="breakdown-item">
+                    <div class="item-meta">
+                      <span class="dot comp-b-dot"></span>
+                      <div class="item-name">
+                        <strong>Component B (ECA)</strong>
+                        <small>Raw: <span id="bd-eca-raw">56</span>/70</small>
+                      </div>
+                    </div>
+                    <div class="item-score">
+                      <span class="score-val" id="bd-comp-b">8.00</span>
+                      <span class="score-denom">/ 10</span>
+                    </div>
+                  </div>
+                  <div class="progress-bar-sm"><div class="bar-fill comp-b-fill" id="bar-b" style="width: 80%"></div></div>
+
+                  <!-- Comp C breakdown -->
+                  <div class="breakdown-item">
+                    <div class="item-meta">
+                      <span class="dot comp-c-dot"></span>
+                      <div class="item-name">
+                        <strong>Component C (WCA)</strong>
+                        <small>Continuous effort evaluation</small>
+                      </div>
+                    </div>
+                    <div class="item-score">
+                      <span class="score-val" id="bd-comp-c">9.00</span>
+                      <span class="score-denom">/ 10</span>
+                    </div>
+                  </div>
+                  <div class="progress-bar-sm"><div class="bar-fill comp-c-fill" id="bar-c" style="width: 90%"></div></div>
+
+                </div>
+              </div>
+
+              <!-- Grade Benchmark Reference -->
+              <div class="benchmark-info">
+                <h4>Evaluation Scale Reference</h4>
+                <div class="scale-chips">
+                  <span class="chip chip-exc">&ge; 27 (90%+): Excellent</span>
+                  <span class="chip chip-vgood">&ge; 24 (80%+): Very Good</span>
+                  <span class="chip chip-good">&ge; 21 (70%+): Good</span>
+                  <span class="chip chip-avg">&ge; 15 (50%+): Average</span>
+                  <span class="chip chip-fail">&lt; 15: Needs Work</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- TAB 3: MULTI-SUBJECT SEMESTER TRACKER -->
+      <section id="semester-manager" class="tab-content">
+        <div class="card manager-card">
+          <div class="manager-header">
+            <div>
+              <h2>Semester Subject Continuous Assessment Tracker</h2>
+              <p>Store your CA marks for all subjects this semester and track your aggregate performance.</p>
+            </div>
+            <div class="manager-actions">
+              <button id="btn-print-semester" class="btn btn-outline btn-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                Print Semester Report
+              </button>
+              <button id="btn-export-csv" class="btn btn-outline btn-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Export CSV
+              </button>
+              <button id="btn-clear-all" class="btn btn-danger btn-sm">Clear All Subjects</button>
+            </div>
+          </div>
+
+          <!-- Summary Stats Row -->
+          <div class="semester-summary-cards">
+            <div class="sum-card">
+              <span class="sum-title">Total Subjects</span>
+              <span class="sum-val" id="sem-total-subjects">0</span>
+            </div>
+            <div class="sum-card">
+              <span class="sum-title">Semester CA Avg</span>
+              <span class="sum-val highlight-blue" id="sem-avg-score">0.00 / 30</span>
+            </div>
+            <div class="sum-card">
+              <span class="sum-title">Overall CA Percentage</span>
+              <span class="sum-val highlight-green" id="sem-avg-percent">0.0%</span>
+            </div>
+            <div class="sum-card">
+              <span class="sum-title">Highest CA Score</span>
+              <span class="sum-val" id="sem-highest-subject">N/A</span>
+            </div>
+          </div>
+
+          <!-- Table of Saved Subjects -->
+          <div class="table-responsive">
+            <table class="subject-table" id="subject-table">
+              <thead>
+                <tr>
+                  <th>Subject Name</th>
+                  <th>CA1 (25)</th>
+                  <th>CA2 (25)</th>
+                  <th>Comp A (10)</th>
+                  <th>ECA (70)</th>
+                  <th>Comp B (10)</th>
+                  <th>WCA (10)</th>
+                  <th>Total CA (30)</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="subject-table-body">
+                <!-- Rows injected dynamically via JS -->
+              </tbody>
+            </table>
+            <div class="empty-state" id="empty-state-msg">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+              <p>No subjects saved yet! Fill in marks on the <strong>Subject Assessment Calculator</strong> tab and click <strong>"Save Subject to Semester"</strong>.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+      <div class="footer-content">
+        <p>&copy; 2026 MAKAUT Continuous Assessment System Utility. Designed strictly as per official MAKAUT regulation guidelines.</p>
+        <div class="footer-links">
+          <span>Formula: CA1&CA2 Avg &rarr; 10M | ECA (70) &rarr; 10M | WCA &rarr; 10M</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Printable Grade Sheet Modal / Template (Hidden on web, used during window.print()) -->
+  <div id="printable-report" class="printable-area">
+    <div class="print-header">
+      <div class="print-logo">MAKAUT</div>
+      <div class="print-title">
+        <h3>CONTINUOUS ASSESSMENT SYSTEM (CA) GRADE REPORT</h3>
+      </div>
+    </div>
+
+    <div class="print-meta-grid">
+      <div><strong>Subject Name:</strong> <span id="print-subject">Data Structures & Algorithms</span></div>
+      <div><strong>Date Generated:</strong> <span id="print-date">September 23, 2026</span></div>
+      <div><strong>Evaluation Scheme:</strong> Theory Course Continuous Assessment (30 Marks)</div>
+    </div>
+
+    <table class="print-table">
+      <thead>
+        <tr>
+          <th>Assessment Component</th>
+          <th style="text-align: center;">Raw Input Score</th>
+          <th style="text-align: center;">Max Raw Marks</th>
+          <th style="text-align: center;">Converted Score</th>
+          <th style="text-align: center;">Weightage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Component A: Class Test 1 (CA1)</td>
+          <td id="print-ca1" style="text-align: center;">20.00</td>
+          <td style="text-align: center;">25</td>
+          <td rowspan="2" id="print-comp-a" style="vertical-align: middle; text-align: center;">8.40</td>
+          <td rowspan="2" style="vertical-align: middle; text-align: center;">10 Marks</td>
+        </tr>
+        <tr>
+          <td>Component A: Class Test 2 (CA2)</td>
+          <td id="print-ca2" style="text-align: center;">22.00</td>
+          <td style="text-align: center;">25</td>
+        </tr>
+        <tr>
+          <td>Component B: End-Semester CA (ECA) Mock Test</td>
+          <td id="print-eca" style="text-align: center;">56.00</td>
+          <td style="text-align: center;">70</td>
+          <td id="print-comp-b" style="vertical-align: middle; text-align: center;">8.00</td>
+          <td style="vertical-align: middle; text-align: center;">10 Marks</td>
+        </tr>
+        <tr>
+          <td>Component C: Whole-Semester CA (WCA) Continuous Effort</td>
+          <td id="print-wca" style="text-align: center;">9.00</td>
+          <td style="text-align: center;">10</td>
+          <td id="print-comp-c" style="vertical-align: middle; text-align: center;">9.00</td>
+          <td style="vertical-align: middle; text-align: center;">10 Marks</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="3" style="text-align: right;">FINAL CONTINUOUS ASSESSMENT SCORE:</th>
+          <th id="print-total" style="font-size: 1.2rem; color: #000; text-align: center; vertical-align: middle;">25.40 / 30.00</th>
+          <th id="print-percent" style="text-align: center; vertical-align: middle;">84.67%</th>
+        </tr>
+      </tfoot>
+    </table>
+
+    <div class="print-signature-space">
+      <div class="sig-box">
+        <div class="sig-line"></div>
+        <p>Subject Teacher Signature</p>
+      </div>
+      <div class="sig-box">
+        <div class="sig-line"></div>
+        <p>HOD / Departmental Seal</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript App Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
