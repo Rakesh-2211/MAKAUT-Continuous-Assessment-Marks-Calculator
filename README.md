@@ -4,9 +4,9 @@ A simple, responsive, and user-friendly web application for calculating **MAKAUT
 
 The calculator converts different assessment components into the **30-mark Continuous Assessment score** and provides a clear breakdown of the final result.
 
-## 🚀 Live Repository
+## 🚀 Live Website
 
-[MAKAUT Continuous Assessment Marks Calculator — GitHub](https://github.com/Rakesh-2211/MAKAUT-Continuous-Assessment-Marks-Calculator?utm_source=chatgpt.com)
+https://rakesh-2211.github.io/MAKAUT-Continuous-Assessment-Marks-Calculator/
 
 ---
 
